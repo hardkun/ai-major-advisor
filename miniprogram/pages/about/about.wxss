@@ -1,0 +1,82 @@
+.legal-page {
+  padding-top: 0;
+}
+
+.legal-hero {
+  margin: 0 -28rpx 28rpx;
+  padding: 48rpx 40rpx 44rpx;
+  border-radius: 0 0 34rpx 34rpx;
+  background: linear-gradient(145deg, #123b70, #1769aa);
+  color: #ffffff;
+}
+
+.hero-label {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 19rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+}
+
+.hero-title {
+  margin-top: 12rpx;
+  font-size: 43rpx;
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  margin-top: 16rpx;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 25rpx;
+  line-height: 1.65;
+}
+
+.legal-card {
+  padding: 30rpx;
+}
+
+.section-title {
+  padding-left: 16rpx;
+  border-left: 7rpx solid #1769aa;
+  color: #17395f;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.paragraph {
+  margin-top: 20rpx;
+  color: #526377;
+  font-size: 27rpx;
+  line-height: 1.9;
+  text-align: justify;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+  margin-top: 24rpx;
+}
+
+.direction-tag {
+  padding: 9rpx 17rpx;
+  border-radius: 22rpx;
+  background: #eaf4ff;
+  color: #1769aa;
+  font-size: 23rpx;
+}
+
+.info-box {
+  margin-top: 24rpx;
+  padding: 20rpx 22rpx;
+  border-radius: 13rpx;
+  background: #eef6fd;
+  color: #345c7e;
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+
+.home-button {
+  width: 100%;
+  margin-top: 34rpx;
+}
+

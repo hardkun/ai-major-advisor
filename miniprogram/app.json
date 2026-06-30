@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/result/result",
+    "pages/report/report",
+    "pages/about/about",
+    "pages/disclaimer/disclaimer",
+    "pages/privacy/privacy"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#123B70",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "AI专业择校助手",
+    "backgroundColor": "#F3F6FA",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2"
+}

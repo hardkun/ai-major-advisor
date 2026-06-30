@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI专业择校助手｜管理后台</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">AI Major Advisor Admin</p>
+        <h1>AI专业择校助手｜管理后台</h1>
+        <p class="subtitle">
+          用于管理原始数据源、运行采集器、查看采集记录、核验 raw 数据，并生成数据工程报告。
+        </p>
+      </div>
+      <div class="header-actions">
+        <button id="refreshAllBtn" class="btn btn-primary">刷新后台数据</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="messageBox" class="message hidden"></section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>数据源管理</h2>
+            <p>新增、检测、预览、采集单个数据源。自动采集的数据只会进入待核验 raw 表。</p>
+          </div>
+          <button id="refreshSourcesBtn" class="btn btn-secondary">刷新数据源</button>
+        </div>
+
+        <form id="sourceForm" class="source-form">
+          <input id="sourceId" type="hidden">
+
+          <div class="form-grid">
+            <label>
+              名称
+              <input id="sourceName" type="text" placeholder="例如：某高校2025四川录取分数" required>
+            </label>
+
+            <label>
+              学校名称
+              <input id="sourceSchoolName" type="text" placeholder="例如：成都信息工程大学">
+            </label>
+
+            <label>
+              来源类型
+              <input id="sourceType" type="text" placeholder="school / official / local_static">
+            </label>
+
+            <label>
+              解析器
+              <select id="parserType">
+                <option value="">请选择</option>
+                <option value="html_table">html_table</option>
+                <option value="csv_url">csv_url</option>
+                <option value="excel_url">excel_url</option>
+                <option value="pdf">pdf</option>
+                <option value="manual_upload">manual_upload</option>
+              </select>
+            </label>
+
+            <label class="check-label">
+              <input id="sourceEnabled" type="checkbox" checked>
+              启用
+            </label>
+          </div>
+
+          <label>
+            URL
+            <input id="sourceUrl" type="url" placeholder="https://example.edu.cn/admission/page.htm">
+          </label>
+
+          <label>
+            描述
+            <input id="sourceDescription" type="text" placeholder="说明该数据源用途、来源和注意事项">
+          </label>
+
+          <div class="form-tools">
+            <button id="fillMappingBtn" type="button" class="btn btn-light">填入中文字段映射模板</button>
+            <button id="fillParserConfigBtn" type="button" class="btn btn-light">填入 HTML parser_config 模板</button>
+            <button id="resetSourceFormBtn" type="button" class="btn btn-light">清空表单</button>
+          </div>
+
+          <div class="textarea-grid">
+            <label>
+              field_mapping_json
+              <textarea id="fieldMappingJson" rows="10" spellcheck="false" placeholder='{"专业名称":"major_name","最低分":"min_score"}'></textarea>
+            </label>
+
+            <label>
+              parser_config_json
+              <textarea id="parserConfigJson" rows="10" spellcheck="false" placeholder='{"auto_detect_header":true,"header_keywords":["专业名称","最低分"]}'></textarea>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button id="saveSourceBtn" type="submit" class="btn btn-primary">新增数据源</button>
+          </div>
+        </form>
+
+        <div id="sourceList" class="list-grid">
+          <div class="empty">数据源加载中...</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>采集管理</h2>
+            <p>运行采集器后，系统会从已启用的数据源拉取数据，并写入待核验原始数据表。</p>
+          </div>
+          <div class="button-row">
+            <button id="runCollectorsBtn" class="btn btn-primary">运行全部启用采集器</button>
+            <button id="bulkExtractFileLinksBtn" class="btn btn-secondary">批量提取附件</button>
+            <button id="refreshRunsBtn" class="btn btn-secondary">刷新采集记录</button>
+          </div>
+        </div>
+
+        <h3>最近一次运行结果</h3>
+        <div id="latestRunResult" class="result-box empty">尚未运行采集器。</div>
+
+        <h3>采集记录</h3>
+        <div id="collectorRuns" class="table-card">
+          <div class="empty">采集记录加载中...</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>raw 数据核验</h2>
+            <p>查看待核验、已核验和已驳回的原始招生记录。</p>
+          </div>
+          <div class="button-row">
+            <button class="btn btn-filter active" data-status="pending">待核验</button>
+            <button class="btn btn-filter" data-status="verified">已核验</button>
+            <button class="btn btn-filter" data-status="rejected">已驳回</button>
+            <button class="btn btn-filter" data-status="">全部</button>
+          </div>
+        </div>
+
+        <div class="two-column">
+          <div>
+            <h3>原始记录列表</h3>
+            <div id="rawRecordList" class="record-list">
+              <div class="empty">raw 数据加载中...</div>
+            </div>
+          </div>
+
+          <aside>
+            <div class="detail-head">
+              <h3>记录详情</h3>
+              <div class="button-row">
+                <button id="verifyRecordBtn" class="btn btn-success" disabled>核验通过</button>
+                <button id="rejectRecordBtn" class="btn btn-danger" disabled>驳回</button>
+              </div>
+            </div>
+            <div id="rawRecordDetail" class="detail-panel empty">请选择左侧记录。</div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>全量数据工程报告</h2>
+            <p>查看覆盖率、缺口诊断、候选数据源，以及下一步处理队列。</p>
+          </div>
+          <div class="button-row">
+            <button id="generateCoverageBtn" class="btn btn-secondary">生成覆盖率报告</button>
+            <button id="generateGapBtn" class="btn btn-secondary">生成缺口诊断报告</button>
+            <button id="backfillSourcesBtn" class="btn btn-secondary">回填数据源学校归属</button>
+            <button id="diagnoseSourcesBtn" class="btn btn-secondary">诊断有源无数据</button>
+            <button id="actionQueueBtn" class="btn btn-secondary">生成处理队列</button>
+          </div>
+        </div>
+
+        <div class="two-column">
+          <section>
+            <h3>覆盖率报告</h3>
+            <div id="coverageReport" class="result-box empty">暂无覆盖率报告。</div>
+          </section>
+
+          <section>
+            <h3>缺口诊断报告</h3>
+            <div id="gapDiagnosisReport" class="result-box empty">暂无缺口诊断报告。</div>
+          </section>
+        </div>
+
+        <section class="sub-section">
+          <h3>数据源诊断与处理队列</h3>
+          <div id="sourceDiagnosticsReport" class="result-box empty">暂无数据源诊断结果。</div>
+        </section>
+
+        <section class="sub-section">
+          <div class="section-head mini">
+            <div>
+              <h3>候选数据源</h3>
+              <p>默认只展示 pending 且通过官方来源过滤的候选源；reference_only / rejected 默认隐藏。</p>
+            </div>
+            <div class="button-row">
+              <button id="deepSearchMissingBtn" class="btn btn-secondary">深度搜索缺失学校</button>
+              <button id="filterOfficialCandidatesBtn" class="btn btn-primary">过滤官方候选</button>
+              <button id="keepTopCandidatesBtn" class="btn btn-secondary">每校保留Top3</button>
+              <button id="officialOnlyCandidatesBtn" class="btn btn-filter active">仅官方候选</button>
+              <button id="includeAllCandidatesBtn" class="btn btn-filter">包含 reference_only / rejected</button>
+              <button id="refreshCandidatesBtn" class="btn btn-secondary">刷新候选源</button>
+            </div>
+          </div>
+          <div id="sourceCandidatesList" class="result-box empty">暂无候选数据源。</div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

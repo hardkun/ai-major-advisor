@@ -1,0 +1,21 @@
+# GitHub 发布前检查清单
+
+- [ ] README 是否完整，是否能让面试官 30 秒内看懂项目价值。
+- [ ] README 是否明确说明当前数据是部分高校公开数据验证集。
+- [ ] README 是否明确说明项目不作为真实志愿填报依据。
+- [ ] `.env` 是否没有提交，是否没有泄露任何 API Key。
+- [ ] `.env.example` 是否存在，并只保留空 key 或示例配置。
+- [ ] 是否决定 `data/advisor.db` 是否上传；如果上传，要确认不含敏感信息。
+- [ ] `screenshots/` 是否补充首页、推荐结果、报告页、admin 和 Swagger 截图。
+- [ ] `requirements.txt` 是否完整，能否重新安装依赖。
+- [ ] 本地启动命令是否可用：`python -m uvicorn main:app --reload`。
+- [ ] `scripts/project_check.py` 是否输出 `ready_for_demo=true`。
+- [ ] `scripts/prepare_demo_dataset.py` 是否已执行，测试源是否被标记为 demo。
+- [ ] `docs/` 是否包含项目概览、数据范围、演示脚本、部署说明和面试材料。
+- [ ] admin 后台是否能打开：`http://127.0.0.1:8000/admin`。
+- [ ] Swagger 是否能打开：`http://127.0.0.1:8000/docs`。
+- [ ] recommend 示例请求是否能返回数据。
+- [ ] 是否删除无关临时文件、调试输出和本地缓存。
+- [ ] GitHub 仓库名是否清晰，例如 `ai-major-advisor`。
+- [ ] 项目描述是否没有夸大数据覆盖范围。
+- [ ] 项目描述是否没有声称真实可用于志愿填报。

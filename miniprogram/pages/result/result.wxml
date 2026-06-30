@@ -1,0 +1,146 @@
+<view class="page-container result-page">
+  <block wx:if="{{hasResult}}">
+    <view class="result-hero">
+      <view class="result-title">AI专业推荐结果</view>
+      <view class="result-subtitle">
+        以下结果基于公开历史数据、专业方向标签和规则算法生成，仅供参考。
+      </view>
+      <view class="report-id-badge">报告编号：{{result.report_id || '--'}}</view>
+    </view>
+
+    <view wx:if="{{items.length === 0}}" class="card empty-match-card">
+      <view class="empty-match-title">暂未匹配到合适结果</view>
+      <view class="empty-match-description">
+        当前结果基于已录入的公开历史数据和规则算法生成，未匹配到结果不代表没有合适院校。
+      </view>
+
+      <view class="empty-section">
+        <view class="empty-section-title">可能原因</view>
+        <view class="empty-list-item">
+          <text class="list-dot">•</text>
+          <text>当前位次与已录入数据差距较大</text>
+        </view>
+        <view class="empty-list-item">
+          <text class="list-dot">•</text>
+          <text>目标方向下可用院校专业数据较少</text>
+        </view>
+        <view class="empty-list-item">
+          <text class="list-dot">•</text>
+          <text>科类、省份或方向与数据库记录不一致</text>
+        </view>
+      </view>
+
+      <view class="empty-section suggestion-section">
+        <view class="empty-section-title">建议操作</view>
+        <view class="empty-list-item">
+          <text class="list-number">1</text>
+          <text>尝试更换 AI 方向</text>
+        </view>
+        <view class="empty-list-item">
+          <text class="list-number">2</text>
+          <text>检查位次是否输入正确，注意位次越小代表排名越靠前</text>
+        </view>
+        <view class="empty-list-item">
+          <text class="list-number">3</text>
+          <text>返回首页重新填写</text>
+        </view>
+      </view>
+
+      <view wx:if="{{result.disclaimer}}" class="risk-box empty-disclaimer">
+        {{result.disclaimer}}
+      </view>
+      <button class="primary-button empty-home-button" bindtap="goHome">返回首页</button>
+    </view>
+
+    <block wx:else>
+      <view class="result-count">共匹配到 {{items.length}} 个院校专业参考组合</view>
+
+      <block wx:for="{{items}}" wx:key="index">
+        <view class="card recommend-card">
+          <view class="card-heading">
+            <view class="school-area">
+              <view class="school-name">{{item.school_name}}</view>
+              <view class="major-name">{{item.major_name}}</view>
+            </view>
+            <view class="match-tag {{item.matchClass}}">{{item.match_type}}</view>
+          </view>
+
+          <view class="basic-info">
+            <view class="info-cell">
+              <view class="info-label">城市</view>
+              <view class="info-value">{{item.city || '--'}}</view>
+            </view>
+            <view class="info-cell">
+              <view class="info-label">院校层次</view>
+              <view class="info-value">{{item.school_level || '--'}}</view>
+            </view>
+            <view class="info-cell">
+              <view class="info-label">往年最低分</view>
+              <view class="info-value data-value">{{item.min_score !== null ? item.min_score : '--'}}</view>
+            </view>
+            <view class="info-cell">
+              <view class="info-label">往年最低位次</view>
+              <view class="info-value data-value">{{item.min_rank !== null ? item.min_rank : '--'}}</view>
+            </view>
+          </view>
+
+          <view class="reason-section">
+            <view class="section-label">推荐理由</view>
+            <view class="section-text">{{item.reason}}</view>
+          </view>
+
+          <view wx:if="{{item.ai_explanation}}" class="ai-panel">
+            <view
+              class="ai-panel-header"
+              data-index="{{index}}"
+              bindtap="toggleAIExplanation"
+            >
+              <view>
+                <view class="ai-panel-title">AI 专业解读</view>
+                <view class="ai-panel-tip">{{item.aiExpanded ? '点击收起详细内容' : '点击展开学习与就业分析'}}</view>
+              </view>
+              <view class="expand-icon {{item.aiExpanded ? 'expanded' : ''}}">⌄</view>
+            </view>
+
+            <view wx:if="{{item.aiExpanded}}" class="ai-panel-content">
+              <view class="ai-section">
+                <view class="ai-label">推荐理由</view>
+                <view class="ai-text">{{item.ai_explanation.recommend_reason}}</view>
+              </view>
+              <view class="ai-section">
+                <view class="ai-label">学习内容</view>
+                <view class="ai-text">{{item.ai_explanation.study_focus}}</view>
+              </view>
+              <view class="ai-section">
+                <view class="ai-label">适合人群</view>
+                <view class="ai-text">{{item.ai_explanation.suitable_for}}</view>
+              </view>
+              <view class="ai-section">
+                <view class="ai-label">就业方向</view>
+                <view class="ai-text">{{item.ai_explanation.career_suggestions}}</view>
+              </view>
+              <view class="risk-box ai-risk">
+                <view class="ai-label">风险提示</view>
+                <view>{{item.ai_explanation.risk_notice}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <view class="risk-box disclaimer-box">{{result.disclaimer}}</view>
+
+      <view class="bottom-actions">
+        <button class="primary-button" bindtap="viewReport">查看参考报告</button>
+        <button class="secondary-button" bindtap="goHome">重新填写</button>
+      </view>
+    </block>
+  </block>
+
+  <view wx:else class="card empty-state no-cache-card">
+    <view class="empty-title">暂无推荐结果</view>
+    <view>请返回首页重新生成。</view>
+    <button class="primary-button empty-button" bindtap="goHome">返回首页</button>
+  </view>
+</view>
+

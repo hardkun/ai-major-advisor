@@ -1,0 +1,56 @@
+<view class="page-container legal-page">
+  <view class="legal-hero">
+    <view class="hero-label">ABOUT</view>
+    <view class="hero-title">产品说明</view>
+    <view class="hero-subtitle">了解 AI专业择校助手的定位、工作方式与使用边界</view>
+  </view>
+
+  <view class="card legal-card">
+    <view class="section-title">AI专业择校助手是什么</view>
+    <view class="paragraph">
+      AI专业择校助手是一款面向对人工智能相关专业感兴趣的高中毕业生和家长的择校参考工具。
+    </view>
+  </view>
+
+  <view class="card legal-card">
+    <view class="section-title">产品能力</view>
+    <view class="paragraph">
+      本产品基于已录入的公开历史招生数据、院校专业信息、专业方向标签和规则推荐算法，为用户提供 AI 相关专业的院校专业参考匹配、推荐理由、专业学习内容、适合人群和就业方向说明。
+    </view>
+  </view>
+
+  <view class="card legal-card">
+    <view class="section-title">支持方向</view>
+    <view class="paragraph">
+      本产品重点服务人工智能、机器人工程、大模型应用、Agent 应用、计算机视觉、智能制造、数据智能、自动化控制等方向。
+    </view>
+    <view class="tag-list">
+      <text class="direction-tag">人工智能</text>
+      <text class="direction-tag">机器人工程</text>
+      <text class="direction-tag">大模型应用</text>
+      <text class="direction-tag">Agent 应用</text>
+      <text class="direction-tag">计算机视觉</text>
+      <text class="direction-tag">智能制造</text>
+    </view>
+  </view>
+
+  <view class="card legal-card">
+    <view class="section-title">推荐如何生成</view>
+    <view class="paragraph">
+      本产品的推荐结果由规则算法生成，主要参考用户输入的省份、科类、分数、位次和目标方向。AI 只负责对推荐结果进行解释，例如生成推荐理由、专业学习内容、适合人群、就业方向和风险提示，不直接决定推荐哪所学校或专业。
+    </view>
+    <view class="info-box">
+      推荐排序由规则算法决定，AI 仅用于辅助解释。
+    </view>
+  </view>
+
+  <view class="card legal-card">
+    <view class="section-title">当前版本说明</view>
+    <view class="paragraph">
+      本产品当前仍处于作品集演示和 MVP 阶段，部分数据为模拟测试数据，仅用于功能演示和产品验证。正式填报志愿前，用户应以所在省级招生考试机构、院校招生章程、官方招生计划、阳光高考平台等权威渠道发布的信息为准。
+    </view>
+  </view>
+
+  <button class="primary-button home-button" bindtap="goHome">返回首页</button>
+</view>
+

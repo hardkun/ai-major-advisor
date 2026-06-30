@@ -1,0 +1,116 @@
+<view class="page-container index-page">
+  <view class="hero">
+    <view class="hero-title">AI专业择校助手</view>
+    <view class="hero-description">
+      基于公开招生数据、专业方向标签和 AI 解释能力，提供 AI 相关专业参考匹配。
+    </view>
+  </view>
+
+  <view class="card form-card">
+    <view class="section-title">填写基本信息</view>
+
+    <view class="form-item">
+      <view class="form-label">所在省份</view>
+      <input
+        class="form-control"
+        value="{{form.province}}"
+        data-field="province"
+        bindinput="onInput"
+        placeholder="请输入省份"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">高考分数</view>
+      <input
+        class="form-control"
+        type="number"
+        value="{{form.score}}"
+        data-field="score"
+        bindinput="onInput"
+        placeholder="请输入高考分数"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">全省位次</view>
+      <input
+        class="form-control"
+        type="number"
+        value="{{form.rank}}"
+        data-field="rank"
+        bindinput="onInput"
+        placeholder="请输入全省位次"
+      />
+      <view class="rank-hint">
+        位次越小代表排名越靠前，例如 4000 名优于 40000 名。
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">科类</view>
+      <picker
+        mode="selector"
+        range="{{subjectTypes}}"
+        value="{{subjectTypeIndex}}"
+        bindchange="onSubjectTypeChange"
+      >
+        <view class="form-control picker-control">
+          <text>{{form.subject_type}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">目标 AI 方向</view>
+      <picker
+        mode="selector"
+        range="{{targetDirections}}"
+        value="{{targetDirectionIndex}}"
+        bindchange="onTargetDirectionChange"
+      >
+        <view class="form-control picker-control">
+          <text>{{form.target_direction}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="switch-row">
+      <view>
+        <view class="form-label switch-label">启用 AI 专业解释</view>
+        <view class="switch-description">生成更自然的学习与就业方向说明</view>
+      </view>
+      <switch
+        checked="{{form.use_ai}}"
+        color="#1769AA"
+        bindchange="onUseAIChange"
+      />
+    </view>
+  </view>
+
+  <button
+    class="primary-button submit-button"
+    loading="{{loading}}"
+    disabled="{{loading}}"
+    bindtap="submitRecommend"
+  >
+    {{loading ? '正在生成...' : '生成 AI 专业推荐'}}
+  </button>
+
+  <view class="page-tip">
+    推荐结果仅作信息参考，请以本省考试院及院校官方发布的信息为准。
+  </view>
+
+  <view class="compliance-footer">
+    <view class="compliance-title">使用前请了解</view>
+    <view class="compliance-links">
+      <navigator class="compliance-link" url="/pages/about/about">产品说明</navigator>
+      <view class="link-divider"></view>
+      <navigator class="compliance-link" url="/pages/disclaimer/disclaimer">免责声明</navigator>
+      <view class="link-divider"></view>
+      <navigator class="compliance-link" url="/pages/privacy/privacy">隐私说明</navigator>
+    </view>
+  </view>
+</view>

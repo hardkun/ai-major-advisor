@@ -1,0 +1,218 @@
+<view class="page-container report-page">
+  <view wx:if="{{loading}}" class="card loading-card">
+    正在加载报告，请稍候…
+  </view>
+
+  <view wx:elif="{{errorMessage}}" class="card empty-state error-card">
+    <view class="error-title">报告加载失败</view>
+    <view>{{errorMessage}}</view>
+    <button wx:if="{{reportId}}" class="secondary-button retry-button" bindtap="retry">
+      重新加载
+    </button>
+    <button class="primary-button home-button" bindtap="goHome">返回首页</button>
+  </view>
+
+  <block wx:elif="{{freeResult}}">
+    <view class="report-hero">
+      <view class="hero-eyebrow">FREE REPORT</view>
+      <view class="hero-title">免费参考报告</view>
+      <view class="hero-number">报告编号：{{report.id}}</view>
+    </view>
+
+    <view class="card summary-card">
+      <view class="summary-title">{{freeResult.title}}</view>
+      <view class="summary-text">{{freeResult.summary}}</view>
+    </view>
+
+    <view class="section-heading">
+      <view class="section-title">院校专业参考</view>
+      <view class="section-count">{{freeResult.items.length}} 项结果</view>
+    </view>
+
+    <view wx:if="{{freeResult.items.length === 0}}" class="card empty-state">
+      本次查询暂未匹配到合适结果。
+    </view>
+
+    <block wx:for="{{freeResult.items}}" wx:key="index">
+      <view class="card report-item">
+        <view class="item-heading">
+          <view class="item-school-area">
+            <view class="school-name">{{item.school_name}}</view>
+            <view class="major-name">{{item.major_name}}</view>
+          </view>
+          <view class="match-tag {{item.matchClass}}">{{item.match_type}}</view>
+        </view>
+
+        <view class="item-data-grid">
+          <view class="data-cell">
+            <view class="data-label">城市</view>
+            <view class="data-text">{{item.city || '--'}}</view>
+          </view>
+          <view class="data-cell">
+            <view class="data-label">院校层次</view>
+            <view class="data-text">{{item.school_level || '--'}}</view>
+          </view>
+          <view class="data-cell">
+            <view class="data-label">往年最低分</view>
+            <view class="data-text data-highlight">{{item.min_score !== null ? item.min_score : '--'}}</view>
+          </view>
+          <view class="data-cell">
+            <view class="data-label">往年最低位次</view>
+            <view class="data-text data-highlight">{{item.min_rank !== null ? item.min_rank : '--'}}</view>
+          </view>
+        </view>
+
+        <view class="reason-block">
+          <view class="reason-title">推荐理由</view>
+          <view class="reason-text">{{item.reason}}</view>
+        </view>
+      </view>
+    </block>
+
+    <view class="risk-box free-disclaimer">{{freeResult.disclaimer}}</view>
+
+    <view class="section-heading paid-heading">
+      <view class="section-title">完整分析报告</view>
+      <view class="section-count">演示解锁</view>
+    </view>
+
+    <view wx:if="{{!(report.is_paid || paidUnlocked)}}" class="card unlock-card">
+      <view class="lock-mark">LOCKED</view>
+      <view class="unlock-title">完整分析报告</view>
+      <view class="unlock-description">
+        解锁后可查看更详细的专业学习内容、适合人群、就业方向、选择建议和风险提示。
+      </view>
+      <view class="unlock-benefits">
+        <view class="benefit-item"><text class="benefit-dot">✓</text>专业方向与课程重点</view>
+        <view class="benefit-item"><text class="benefit-dot">✓</text>适合人群与就业建议</view>
+        <view class="benefit-item"><text class="benefit-dot">✓</text>完整选择建议与风险提示</view>
+      </view>
+      <view class="price-row">
+        <view class="price-symbol">¥</view>
+        <view class="price-number">6</view>
+        <view class="price-note">演示价格</view>
+      </view>
+      <button
+        class="unlock-button"
+        loading="{{paying}}"
+        disabled="{{paying}}"
+        bindtap="unlockPaidReport"
+      >
+        {{paying ? '正在解锁...' : '6元解锁完整报告'}}
+      </button>
+      <view class="demo-note">当前仅模拟解锁，不会发起真实支付</view>
+    </view>
+
+    <block wx:else>
+      <view wx:if="{{!report.paid_result}}" class="card unlocked-empty-card">
+        <view class="unlocked-badge">已模拟解锁</view>
+        <view class="unlocked-empty-title">当前后端未返回完整报告内容</view>
+        <view class="unlocked-empty-text">
+          本次解锁仅用于演示前端流程。后端返回 paid_result 后，此处将自动展示完整分析报告。
+        </view>
+      </view>
+
+      <block wx:else>
+        <view class="card paid-report-title-card">
+          <view class="unlocked-badge">已模拟解锁</view>
+          <view class="paid-report-title">{{report.paid_result.title}}</view>
+        </view>
+
+        <view class="card user-input-card">
+          <view class="paid-section-title">本次输入</view>
+          <view class="user-input-grid">
+            <view class="input-item">
+              <view class="data-label">省份</view>
+              <view class="data-text">{{report.paid_result.user_input.province}}</view>
+            </view>
+            <view class="input-item">
+              <view class="data-label">分数</view>
+              <view class="data-text">{{report.paid_result.user_input.score}}</view>
+            </view>
+            <view class="input-item">
+              <view class="data-label">位次</view>
+              <view class="data-text">{{report.paid_result.user_input.rank}}</view>
+            </view>
+            <view class="input-item">
+              <view class="data-label">科类</view>
+              <view class="data-text">{{report.paid_result.user_input.subject_type}}</view>
+            </view>
+            <view class="input-item wide-input-item">
+              <view class="data-label">目标方向</view>
+              <view class="data-text">{{report.paid_result.user_input.target_direction}}</view>
+            </view>
+          </view>
+        </view>
+
+        <view class="paid-section-title outside-title">完整专业分析</view>
+        <block wx:for="{{report.paid_result.items}}" wx:key="index">
+          <view class="card paid-item-card">
+            <view class="item-heading">
+              <view class="item-school-area">
+                <view class="school-name">{{item.school_name}}</view>
+                <view class="major-name">{{item.major_name}}</view>
+              </view>
+              <view class="match-tag {{item.matchClass}}">{{item.match_type}}</view>
+            </view>
+
+            <view class="tag-info-row">
+              <view class="tag-info-label">专业方向</view>
+              <view class="tag-info-text">{{item.direction_tags || '--'}}</view>
+            </view>
+            <view class="tag-info-row">
+              <view class="tag-info-label">就业方向</view>
+              <view class="tag-info-text">{{item.career_paths || '--'}}</view>
+            </view>
+
+            <view class="reason-block">
+              <view class="reason-title">推荐理由</view>
+              <view class="reason-text">{{item.reason}}</view>
+            </view>
+
+            <view wx:if="{{item.ai_explanation}}" class="paid-ai-box">
+              <view class="paid-section-title">AI 深度解释</view>
+              <view class="paid-ai-section">
+                <view class="paid-ai-label">学习内容</view>
+                <view class="paid-ai-text">{{item.ai_explanation.study_focus}}</view>
+              </view>
+              <view class="paid-ai-section">
+                <view class="paid-ai-label">适合人群</view>
+                <view class="paid-ai-text">{{item.ai_explanation.suitable_for}}</view>
+              </view>
+              <view class="paid-ai-section">
+                <view class="paid-ai-label">就业建议</view>
+                <view class="paid-ai-text">{{item.ai_explanation.career_suggestions}}</view>
+              </view>
+              <view class="paid-risk-box">{{item.ai_explanation.risk_notice}}</view>
+            </view>
+          </view>
+        </block>
+
+        <view class="card suggestions-card">
+          <view class="paid-section-title">备选与填报建议</view>
+          <block wx:for="{{report.paid_result.extra_suggestions}}" wx:key="index">
+            <view class="suggestion-item">
+              <text class="suggestion-number">{{index + 1}}</text>
+              <text>{{item}}</text>
+            </view>
+          </block>
+        </view>
+
+        <view class="risk-box paid-disclaimer">{{report.paid_result.disclaimer}}</view>
+      </block>
+    </block>
+
+    <button class="primary-button bottom-home-button" bindtap="goHome">返回首页</button>
+  </block>
+
+  <view class="compliance-footer">
+    <view class="compliance-title">合规与产品信息</view>
+    <view class="compliance-links">
+      <navigator class="compliance-link" url="/pages/about/about">产品说明</navigator>
+      <view class="link-divider"></view>
+      <navigator class="compliance-link" url="/pages/disclaimer/disclaimer">免责声明</navigator>
+      <view class="link-divider"></view>
+      <navigator class="compliance-link" url="/pages/privacy/privacy">隐私说明</navigator>
+    </view>
+  </view>
+</view>

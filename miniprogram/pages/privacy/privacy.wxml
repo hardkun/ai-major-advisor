@@ -1,0 +1,76 @@
+<view class="page-container legal-page">
+  <view class="legal-hero">
+    <view class="hero-label">PRIVACY</view>
+    <view class="hero-title">隐私说明</view>
+    <view class="hero-subtitle">说明演示版本会使用哪些信息，以及如何使用</view>
+  </view>
+
+  <view class="card privacy-card">
+    <view class="privacy-item">
+      <view class="item-mark">01</view>
+      <view class="item-content">
+        <view class="item-title">推荐所需信息</view>
+        <view class="item-text">
+          本产品为了生成推荐结果，可能需要用户输入省份、科类、分数、位次、目标 AI 方向等信息。
+        </view>
+      </view>
+    </view>
+
+    <view class="privacy-item">
+      <view class="item-mark">02</view>
+      <view class="item-content">
+        <view class="item-title">不主动收集敏感身份信息</view>
+        <view class="item-text">
+          本产品当前演示版本不要求用户登录，不主动收集姓名、身份证号、准考证号、手机号、学校、家庭住址等敏感个人信息。
+        </view>
+      </view>
+    </view>
+
+    <view class="privacy-item">
+      <view class="item-mark">03</view>
+      <view class="item-content">
+        <view class="item-title">查询记录的使用</view>
+        <view class="item-text">
+          用户输入的查询信息可能会被保存为推荐记录，用于生成报告、功能演示、产品优化和问题排查。
+        </view>
+      </view>
+    </view>
+
+    <view class="privacy-item">
+      <view class="item-mark">04</view>
+      <view class="item-content">
+        <view class="item-title">用途限制</view>
+        <view class="item-text">
+          本产品不会将用户输入信息用于与志愿参考无关的用途。
+        </view>
+      </view>
+    </view>
+
+    <view class="privacy-item">
+      <view class="item-mark">05</view>
+      <view class="item-content">
+        <view class="item-title">后续版本</view>
+        <view class="item-text">
+          如果后续接入登录、支付、真实用户系统，将补充更完整的隐私政策和用户授权流程。
+        </view>
+      </view>
+    </view>
+
+    <view class="privacy-item">
+      <view class="item-mark">06</view>
+      <view class="item-content">
+        <view class="item-title">停止使用</view>
+        <view class="item-text">
+          用户如不同意上述说明，可以停止使用本产品。
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="privacy-note">
+    当前版本为无登录的作品集演示版本，不接入真实微信支付。
+  </view>
+
+  <button class="primary-button home-button" bindtap="goHome">返回首页</button>
+</view>
+

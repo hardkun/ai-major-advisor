@@ -1,0 +1,58 @@
+<view class="page-container legal-page">
+  <view class="legal-hero">
+    <view class="hero-label">DISCLAIMER</view>
+    <view class="hero-title">免责声明</view>
+    <view class="hero-subtitle">使用本产品前，请认真阅读以下说明</view>
+  </view>
+
+  <view class="important-notice">
+    本产品提供的信息仅用于参考，不构成最终志愿填报建议，也不承诺任何录取结果。
+  </view>
+
+  <view class="card terms-card">
+    <view class="term-item">
+      <view class="term-number">1</view>
+      <view class="term-text">
+        本产品提供的院校专业匹配结果、推荐理由、专业解释、就业方向和完整分析报告，仅用于高考志愿填报前的信息参考，不构成最终志愿填报建议。
+      </view>
+    </view>
+
+    <view class="term-item">
+      <view class="term-number">2</view>
+      <view class="term-text">
+        本产品不承诺任何录取结果，不提供“保录取”“精准录取预测”“录取概率保证”等服务。用户应结合本省官方志愿填报系统、招生计划、院校招生章程、选科要求、学费、校区、身体条件限制等信息进行综合判断。
+      </view>
+    </view>
+
+    <view class="term-item">
+      <view class="term-number">3</view>
+      <view class="term-text">
+        本产品当前处于作品集演示和 MVP 阶段，部分院校、专业、分数、位次和招生数据可能为模拟测试数据，仅用于功能演示，不代表真实招生结果。
+      </view>
+    </view>
+
+    <view class="term-item">
+      <view class="term-number">4</view>
+      <view class="term-text">
+        本产品中的 AI 解释内容由大语言模型根据已生成的推荐结果进行辅助说明，可能存在不完整、不准确或表达偏差。AI 内容仅供参考，不能替代考生、家长、老师、招生考试机构或专业升学顾问的判断。
+      </view>
+    </view>
+
+    <view class="term-item">
+      <view class="term-number">5</view>
+      <view class="term-text">
+        用户在正式填报志愿前，应以教育主管部门、省级招生考试机构、院校官方网站、院校招生章程和官方志愿填报系统发布的信息为准。
+      </view>
+    </view>
+
+    <view class="term-item">
+      <view class="term-number">6</view>
+      <view class="term-text">
+        用户因使用本产品参考信息而作出的志愿填报、院校选择、专业选择或其他决策，应由用户本人及监护人自行承担相应责任。
+      </view>
+    </view>
+  </view>
+
+  <button class="primary-button home-button" bindtap="goHome">返回首页</button>
+</view>
+

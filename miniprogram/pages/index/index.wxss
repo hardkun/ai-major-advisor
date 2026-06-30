@@ -1,0 +1,143 @@
+.index-page {
+  padding-top: 0;
+}
+
+.hero {
+  margin: 0 -28rpx 28rpx;
+  padding: 52rpx 40rpx 66rpx;
+  border-radius: 0 0 36rpx 36rpx;
+  background: linear-gradient(145deg, #123b70, #1769aa);
+  color: #ffffff;
+}
+
+.hero-title {
+  margin-bottom: 20rpx;
+  font-size: 48rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+}
+
+.hero-description {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 27rpx;
+  line-height: 1.75;
+}
+
+.form-card {
+  padding-top: 36rpx;
+}
+
+.section-title {
+  margin-bottom: 32rpx;
+  color: #17395f;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.form-label {
+  margin-bottom: 14rpx;
+  color: #34465b;
+  font-size: 27rpx;
+  font-weight: 600;
+}
+
+.form-control {
+  box-sizing: border-box;
+  width: 100%;
+  height: 88rpx;
+  padding: 0 24rpx;
+  border: 2rpx solid #dce4ee;
+  border-radius: 14rpx;
+  background: #f9fbfd;
+  color: #1f2d3d;
+  font-size: 28rpx;
+  line-height: 88rpx;
+}
+
+.form-control:focus {
+  border-color: #1769aa;
+}
+
+.rank-hint {
+  margin-top: 12rpx;
+  padding: 14rpx 18rpx;
+  border-radius: 10rpx;
+  background: #eef6fd;
+  color: #58748f;
+  font-size: 22rpx;
+  line-height: 1.55;
+}
+
+.picker-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.picker-arrow {
+  color: #7a899a;
+  font-size: 42rpx;
+}
+
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4rpx;
+}
+
+.switch-label {
+  margin-bottom: 8rpx;
+}
+
+.switch-description {
+  color: #8190a3;
+  font-size: 23rpx;
+}
+
+.submit-button {
+  margin-top: 32rpx;
+}
+
+.page-tip {
+  padding: 28rpx 20rpx 0;
+  color: #8491a3;
+  font-size: 23rpx;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.compliance-footer {
+  margin-top: 34rpx;
+  padding: 26rpx 20rpx 8rpx;
+  border-top: 1rpx solid #dde4ec;
+  text-align: center;
+}
+
+.compliance-title {
+  color: #98a3b0;
+  font-size: 21rpx;
+}
+
+.compliance-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14rpx;
+}
+
+.compliance-link {
+  padding: 6rpx 16rpx;
+  color: #52799d;
+  font-size: 23rpx;
+}
+
+.link-divider {
+  width: 1rpx;
+  height: 22rpx;
+  background: #ced7e1;
+}
