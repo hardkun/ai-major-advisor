@@ -27,6 +27,29 @@
   padding-top: 36rpx;
 }
 
+.demo-card {
+  margin-bottom: 24rpx;
+  border: 2rpx solid #bfdbfe;
+  background: #eff6ff;
+}
+
+.demo-text {
+  color: #315c86;
+  font-size: 25rpx;
+  line-height: 1.7;
+}
+
+.message-box {
+  margin-bottom: 24rpx;
+  padding: 20rpx 24rpx;
+  border: 2rpx solid #fed7aa;
+  border-radius: 16rpx;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 25rpx;
+  line-height: 1.6;
+}
+
 .section-title {
   margin-bottom: 32rpx;
   color: #17395f;

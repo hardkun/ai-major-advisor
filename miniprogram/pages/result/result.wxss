@@ -33,6 +33,27 @@
   font-size: 22rpx;
 }
 
+.demo-badge {
+  display: inline-block;
+  margin-top: 22rpx;
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  background: #fbbf24;
+  color: #78350f;
+  font-size: 23rpx;
+  font-weight: 700;
+}
+
+.demo-message {
+  margin-top: 18rpx;
+  padding: 18rpx 20rpx;
+  border-radius: 14rpx;
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 24rpx;
+  line-height: 1.65;
+}
+
 .result-count {
   margin: 0 8rpx 20rpx;
   color: #6e7e91;
@@ -135,6 +156,30 @@
   margin-top: 26rpx;
   padding-top: 24rpx;
   border-top: 1rpx solid #edf1f5;
+}
+
+.source-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+  margin-top: 22rpx;
+  padding: 16rpx 18rpx;
+  border-radius: 12rpx;
+  background: #f6f9fc;
+  color: #60748a;
+  font-size: 23rpx;
+  line-height: 1.5;
+}
+
+.verified-tag {
+  flex-shrink: 0;
+  padding: 5rpx 12rpx;
+  border-radius: 999rpx;
+  background: #e8f7ee;
+  color: #24824a;
+  font-size: 21rpx;
+  font-weight: 700;
 }
 
 .section-label,
@@ -314,4 +359,3 @@
 .empty-button {
   margin-top: 40rpx;
 }
-

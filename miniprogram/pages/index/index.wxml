@@ -6,6 +6,17 @@
     </view>
   </view>
 
+  <view wx:if="{{demoMode}}" class="card demo-card">
+    <view class="section-title">演示模式已开启</view>
+    <view class="demo-text">
+      为保证截图和演示稳定，推荐请求默认关闭 AI 解释。如果后端请求失败，将展示本地演示数据并明确标注。
+    </view>
+  </view>
+
+  <view wx:if="{{message}}" class="message-box">
+    {{message}}
+  </view>
+
   <view class="card form-card">
     <view class="section-title">填写基本信息</view>
 
@@ -80,7 +91,9 @@
     <view class="switch-row">
       <view>
         <view class="form-label switch-label">启用 AI 专业解释</view>
-        <view class="switch-description">生成更自然的学习与就业方向说明</view>
+        <view class="switch-description">
+          演示模式下会临时关闭 AI 解释，优先保证推荐快速返回。
+        </view>
       </view>
       <switch
         checked="{{form.use_ai}}"
@@ -96,7 +109,7 @@
     disabled="{{loading}}"
     bindtap="submitRecommend"
   >
-    {{loading ? '正在生成...' : '生成 AI 专业推荐'}}
+    {{loading ? '推荐生成中...' : '生成 AI 专业推荐'}}
   </button>
 
   <view class="page-tip">

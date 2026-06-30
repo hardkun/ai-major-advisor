@@ -294,17 +294,37 @@ POST /reports/{report_id}/mock-pay
 - 将 mock-pay 替换为真实支付回调
 - 完善正式隐私政策和合规授权流程
 
-## 截图占位
+## 项目截图
 
-截图目录：`screenshots/`
+### 小程序首页
 
-建议补充：
+![小程序首页](screenshots/miniprogram-home.png)
 
-- 首页截图
-- 推荐结果截图
-- 报告页截图
-- admin 后台截图
-- Swagger 接口截图
+### 推荐结果页
+
+![推荐结果页](screenshots/miniprogram-results.png)
+
+### AI解释报告页
+
+![AI解释报告页](screenshots/miniprogram-report.png)
+
+### Admin 管理后台
+
+![Admin 管理后台](screenshots/admin-dashboard.png)
+
+### Swagger API 文档
+
+#### 接口总览
+
+![Swagger 接口总览](screenshots/swagger-api-overview.png)
+
+#### 推荐接口
+
+![推荐接口](screenshots/swagger-recommend-api.png)
+
+#### 报告接口
+
+![报告接口](screenshots/swagger-report-api.png)
 
 ## 求职包装材料
 

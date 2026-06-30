@@ -5,6 +5,8 @@
       <view class="result-subtitle">
         以下结果基于公开历史数据、专业方向标签和规则算法生成，仅供参考。
       </view>
+      <view wx:if="{{isDemoResult}}" class="demo-badge">演示数据</view>
+      <view wx:if="{{demoMessage}}" class="demo-message">{{demoMessage}}</view>
       <view class="report-id-badge">报告编号：{{result.report_id || '--'}}</view>
     </view>
 
@@ -84,6 +86,11 @@
             </view>
           </view>
 
+          <view class="source-row">
+            <text>数据来源：{{item.source_name || '当前验证集'}}</text>
+            <text class="verified-tag">{{item.verifiedText}}</text>
+          </view>
+
           <view class="reason-section">
             <view class="section-label">推荐理由</view>
             <view class="section-text">{{item.reason}}</view>
@@ -143,4 +150,3 @@
     <button class="primary-button empty-button" bindtap="goHome">返回首页</button>
   </view>
 </view>
-
