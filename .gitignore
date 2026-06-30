@@ -1,8 +1,14 @@
-__pycache__/
-*.py[cod]
 .venv/
-.env
-data/*.db
-.pytest_cache/
+__pycache__/
 *.pyc
-*.db
+.env
+.env.*
+*.log
+data_downloads/
+node_modules/
+.DS_Store
+
+# 可选：如果 app.db 里没有隐私数据，可以保留用于演示
+# app.db
+# WeChat Mini Program private config
+miniprogram/project.private.config.json
